@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 
 function Rightbar() {
   return (
-    <Box sx={{ backgroundColor: 'lightcoral' }} flex={2} p={2}>
+    <Box bgcolor='lightcoral' sx={{ display: { xs: 'none', sm: 'block' } }} flex={2} p={2}>
       Rightbar
     </Box>
   );

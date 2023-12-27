@@ -99,3 +99,6 @@ const BlueButton = styled(Button)(({ theme }) => ({
   },
 }));
 ```
+
+- Layout
+- Responsive Design
