@@ -1,9 +1,13 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 function Rightbar() {
   return (
     <Box bgcolor='lightcoral' sx={{ display: { xs: 'none', sm: 'block' } }} flex={2} p={2}>
-      Rightbar
+      <Box position='fixed'>
+        <Typography variant='h6' fontWeight={100}>
+          Online Friends
+        </Typography>
+      </Box>
     </Box>
   );
 }
