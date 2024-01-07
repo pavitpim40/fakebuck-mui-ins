@@ -1,6 +1,18 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import { Pets, Mail, Notifications } from '@mui/icons-material';
-import { AppBar, Toolbar, Typography, Box, Input, InputBase, Badge, Avatar } from '@mui/material';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Box,
+  Input,
+  InputBase,
+  Badge,
+  Avatar,
+  MenuItem,
+  Menu,
+} from '@mui/material';
 
 const StyledToolbar = styled(Toolbar)({
   display: 'flex',
@@ -32,6 +44,7 @@ const UserBox = styled(Box)(({ theme }) => ({
   },
 }));
 function Navbar() {
+  const [open, setOpen] = useState(false);
   return (
     <AppBar position='sticky'>
       <StyledToolbar>
@@ -49,13 +62,33 @@ function Navbar() {
           <Badge badgeContent={2} color='error'>
             <Notifications />
           </Badge>
-          <Avatar style={{ width: 30, height: 30 }} />
+          <Avatar onClick={(e) => setOpen(!open)} style={{ width: 30, height: 30 }} />
         </Icons>
         <UserBox>
-          <Avatar style={{ width: 30, height: 30 }} />
+          <Avatar onClick={(e) => setOpen(!open)} style={{ width: 30, height: 30 }} />
           <Typography>John Doe</Typography>
         </UserBox>
       </StyledToolbar>
+      {/* Menu */}
+      <Menu
+        id='demo-positioned-menu'
+        aria-labelledby='demo-positioned-button'
+        // anchorEl={anchorEl}
+        open={open}
+        onClose={() => setOpen(false)}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <MenuItem>Profile</MenuItem>
+        <MenuItem>My account</MenuItem>
+        <MenuItem>Logout</MenuItem>
+      </Menu>
     </AppBar>
   );
 }
