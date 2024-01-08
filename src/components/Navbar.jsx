@@ -13,6 +13,7 @@ import {
   MenuItem,
   Menu,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const StyledToolbar = styled(Toolbar)({
   display: 'flex',
@@ -45,6 +46,15 @@ const UserBox = styled(Box)(({ theme }) => ({
 }));
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate('/login');
+  };
+
+  const goTomyProgile = () => {
+    navigate('/profile');
+  };
   return (
     <AppBar position='sticky'>
       <StyledToolbar>
@@ -62,10 +72,16 @@ function Navbar() {
           <Badge badgeContent={2} color='error'>
             <Notifications />
           </Badge>
-          <Avatar onClick={(e) => setOpen(!open)} style={{ width: 30, height: 30 }} />
+          <Avatar
+            onClick={(event) => setOpen(event.currentTarget)}
+            style={{ width: 30, height: 30 }}
+          />
         </Icons>
         <UserBox>
-          <Avatar onClick={(e) => setOpen(!open)} style={{ width: 30, height: 30 }} />
+          <Avatar
+            onClick={(event) => setOpen(event.currentTarget)}
+            style={{ width: 30, height: 30 }}
+          />
           <Typography>John Doe</Typography>
         </UserBox>
       </StyledToolbar>
@@ -73,9 +89,9 @@ function Navbar() {
       <Menu
         id='demo-positioned-menu'
         aria-labelledby='demo-positioned-button'
-        // anchorEl={anchorEl}
-        open={open}
-        onClose={() => setOpen(false)}
+        anchorEl={open}
+        open={Boolean(open)}
+        onClose={() => setOpen(null)}
         anchorOrigin={{
           vertical: 'top',
           horizontal: 'right',
@@ -85,9 +101,9 @@ function Navbar() {
           horizontal: 'right',
         }}
       >
-        <MenuItem>Profile</MenuItem>
+        <MenuItem onClick={goTomyProgile}>Profile</MenuItem>
         <MenuItem>My account</MenuItem>
-        <MenuItem>Logout</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </AppBar>
   );

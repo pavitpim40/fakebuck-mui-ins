@@ -1,7 +1,8 @@
 import { Home, ModeNight, Person, Storefront } from '@mui/icons-material';
 import { Box, List, ListItemButton, ListItemIcon, ListItemText, Switch } from '@mui/material';
-
+import { useTheme } from '../context/ThemeContext';
 export default function Sidebar() {
+  const { toggleDarkMode } = useTheme();
   return (
     <Box flex={1} p={2} sx={{ display: { xs: 'none', sm: 'block' } }}>
       <Box position='fixed'>
@@ -27,7 +28,7 @@ export default function Sidebar() {
           <ListItemButton sx={{ pl: 4 }} component='a' href='#home'>
             <ListItemIcon>
               <ModeNight />
-              <Switch />
+              <Switch onClick={() => toggleDarkMode()} />
             </ListItemIcon>
           </ListItemButton>
         </List>
