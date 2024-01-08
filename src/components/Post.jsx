@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { Favorite, FavoriteBorder, MoreVert } from '@mui/icons-material';
+import { useState } from 'react';
+import { Favorite, FavoriteBorder, MoreVert, ChatBubbleOutlineOutlined } from '@mui/icons-material';
 import {
   Avatar,
   Card,
@@ -23,8 +23,7 @@ function Post() {
   };
 
   const handleClose = () => {
-    console.log('close');
-    // setAnchorEl(null);
+    setAnchorEl(null);
   };
 
   console.log(anchorEl);
@@ -78,6 +77,12 @@ function Post() {
       <CardActions disableSpacing>
         <IconButton aria-label='add to favorites'>
           <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: 'red' }} />} />
+        </IconButton>
+        <IconButton aria-label='add to favorites'>
+          <Checkbox
+            icon={<ChatBubbleOutlineOutlined />}
+            checkedIcon={<ChatBubbleOutlineOutlined sx={{ color: 'blue' }} />}
+          />
         </IconButton>
       </CardActions>
     </Card>
