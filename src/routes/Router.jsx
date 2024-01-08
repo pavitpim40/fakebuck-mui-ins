@@ -3,21 +3,38 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
 import ProfilePage from '../pages/ProfilePage';
+import AppLayout from '../layout/AppLayout';
+import RedirectRoute from './RedirectRoute';
+import ProtectRoute from './ProtectRoute';
 
 function Router() {
   // Array<RouterObject>
   const router = createBrowserRouter([
     {
-      path: '/',
-      element: <HomePage />,
-    },
-    {
       path: '/login',
-      element: <LoginPage />,
+      element: (
+        <RedirectRoute>
+          <LoginPage />
+        </RedirectRoute>
+      ),
     },
     {
-      path: '/profile',
-      element: <ProfilePage />,
+      path: '/',
+      element: (
+        <ProtectRoute>
+          <AppLayout />
+        </ProtectRoute>
+      ),
+      children: [
+        {
+          path: '',
+          element: <HomePage />,
+        },
+        {
+          path: '/profile',
+          element: <ProfilePage />,
+        },
+      ],
     },
     {
       path: '/friend',

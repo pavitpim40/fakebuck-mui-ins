@@ -14,6 +14,7 @@ import {
   Menu,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const StyledToolbar = styled(Toolbar)({
   display: 'flex',
@@ -46,10 +47,12 @@ const UserBox = styled(Box)(({ theme }) => ({
 }));
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    navigate('/login');
+    logout();
+    // navigate('/login');
   };
 
   const goTomyProgile = () => {
