@@ -20,6 +20,10 @@ function Router() {
       element: <ProfilePage />,
     },
     {
+      path: '/friend',
+      element: <ProfilePage />,
+    },
+    {
       path: '/friend/:friendId',
       element: <ProfilePage />,
     },

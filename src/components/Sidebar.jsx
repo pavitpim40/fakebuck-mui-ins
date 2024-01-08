@@ -1,6 +1,7 @@
 import { Home, ModeNight, Person, Storefront } from '@mui/icons-material';
 import { Box, List, ListItemButton, ListItemIcon, ListItemText, Switch } from '@mui/material';
 import { useTheme } from '../context/ThemeContext';
+import { Link } from 'react-router-dom';
 export default function Sidebar() {
   const { toggleDarkMode } = useTheme();
   return (
@@ -13,18 +14,22 @@ export default function Sidebar() {
             </ListItemIcon>
             <ListItemText primary='HomePage' />
           </ListItemButton>
+
           <ListItemButton sx={{ pl: 4 }} component='a' href='#home'>
             <ListItemIcon>
               <Storefront />
             </ListItemIcon>
             <ListItemText primary='Marketplace' />
           </ListItemButton>
-          <ListItemButton sx={{ pl: 4 }} component='a' href='#home'>
-            <ListItemIcon>
-              <Person />
-            </ListItemIcon>
-            <ListItemText primary='Friend' />
-          </ListItemButton>
+
+          <Link to='/friend/1'>
+            <ListItemButton sx={{ pl: 4 }} component='a' href='#home'>
+              <ListItemIcon>
+                <Person />
+              </ListItemIcon>
+              <ListItemText primary='Friend' />
+            </ListItemButton>
+          </Link>
           <ListItemButton sx={{ pl: 4 }} component='a' href='#home'>
             <ListItemIcon>
               <ModeNight />

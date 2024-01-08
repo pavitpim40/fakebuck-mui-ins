@@ -9,7 +9,6 @@ export default function ThemeContextProvider({ children }) {
   const [mode, setMode] = useState('dark');
 
   const toggleDarkMode = useCallback(() => {
-    console.log(mode);
     if (mode === 'light') setMode('dark');
     else setMode('light');
   }, [mode]);
