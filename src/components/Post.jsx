@@ -1,4 +1,5 @@
-import { Favorite, FavoriteBorder, MoreVert, Share } from '@mui/icons-material';
+import { useState, useRef } from 'react';
+import { Favorite, FavoriteBorder, MoreVert } from '@mui/icons-material';
 import {
   Avatar,
   Card,
@@ -8,10 +9,25 @@ import {
   CardMedia,
   Checkbox,
   IconButton,
+  Menu,
+  MenuItem,
   Typography,
 } from '@mui/material';
 
 function Post() {
+  const [anchorEl, setAnchorEl] = useState(false);
+  // const settingEl = useRef(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    console.log('close');
+    // setAnchorEl(null);
+  };
+
+  console.log(anchorEl);
   return (
     <Card sx={{ margin: 5 }}>
       <CardHeader
@@ -21,13 +37,32 @@ function Post() {
           </Avatar>
         }
         action={
-          <IconButton aria-label='settings'>
+          <IconButton aria-label='settings' onClick={handleClick}>
             <MoreVert />
           </IconButton>
         }
         title='Shrimp and Chorizo Paella'
         subheader='September 14, 2016'
       />
+      <Menu
+        id='demo-positioned-menu'
+        aria-labelledby='demo-positioned-button'
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <MenuItem>Edit</MenuItem>
+        <MenuItem>Delete</MenuItem>
+      </Menu>
+
       <CardMedia
         component='img'
         height='194'
@@ -43,9 +78,6 @@ function Post() {
       <CardActions disableSpacing>
         <IconButton aria-label='add to favorites'>
           <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite sx={{ color: 'red' }} />} />
-        </IconButton>
-        <IconButton aria-label='share'>
-          <Share />
         </IconButton>
       </CardActions>
     </Card>
